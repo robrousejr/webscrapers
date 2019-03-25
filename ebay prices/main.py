@@ -13,7 +13,7 @@ class product:
         self.price = price
         self.link = link
     def __str__(self):
-        return "Name: %s\nPrice: %d\nLink: %s" % (self.name, self.price, self.link)
+        return "Name: %s\nPrice: $%d\nLink: %s\n" % (self.name, self.price, self.link)
         
 # Holds prices of products in URL
 prices = soup.select(".s-item__price")
@@ -44,9 +44,17 @@ for a in links:
 # Verifies that each list has same amount of elements
 assert(len(priceList) == len(nameList) and len(priceList) == len(linkList))
 
+sizeLists = len(priceList) # Holds number of elements in all 3 lists
+productList = [] # Will hold all final objects
 
-# Sorts prices
-priceList.sort()
+# Goes through each list and makes Product objects for each
+for prod in range(sizeLists):
+    tmpProduct = product(nameList[prod], priceList[prod], linkList[prod])
+    productList.append(tmpProduct)
 
+# Sorts product list by price ascending
+productList.sort(key=lambda x: x.price, reverse=False)
 
-
+# Prints out all products in productList
+for x in range(len(productList)):
+    print(productList[x])
