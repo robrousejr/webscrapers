@@ -21,5 +21,8 @@ for item in prices:
     priceList.append(float(rest)) # appends prices as floats in list
 
 print(priceList) # Prints out final list
+print("After Sort:")
+priceList.sort()
+print(priceList)
 
 
