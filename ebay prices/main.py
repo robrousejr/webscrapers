@@ -7,6 +7,15 @@ url = "https://www.ebay.com/sch/i.html?_from=R40&_nkw=lebron+15&_sacat=15709&US%
 page = requests.get(url)
 soup = BeautifulSoup(page.content, 'html.parser')
 
+class product:
+    def __init__(self, name, price, link):
+        self.name = name
+        self.price = price
+        self.link = link
+    def __str__(self):
+        return "Name: %s\nPrice: %d\nLink: %s" % (self.name, self.price, self.link)
+        
+
 # Holds prices of products in URL
 prices = soup.select(".s-item__price")
 
@@ -20,9 +29,12 @@ for item in prices:
     rest = re.sub('[!@#$,]', '', rest) # Removes these symbols
     priceList.append(float(rest)) # appends prices as floats in list
 
-print(priceList) # Prints out final list
-print("After Sort:")
+# Sorts prices
 priceList.sort()
 print(priceList)
+
+
+""" product1 = product("Product", 9.99, "www.youtube.com")
+print(product1) """
 
 
