@@ -4,10 +4,19 @@ import re
 import os
 from functions import *
 
-schoolName = "Sebring"
 
-# Holds my custom database numbers and team values (outside of project)
+# CUSTOM VARIABLES NEEDING UPDATED BELOW
+########################################
+
+schoolName = "Sebring"
 databaseSchoolNumbers = [["Jackson Milton", 1], ["Lowellville", 2], ["McDonald", 3], ["Mineral Ridge", 4], ["Sebring", 5], ["Springfield", 6], ["Waterloo", 7], ["Western Reserve", 8]]
+
+########################################
+
+
+
+# Finds the index of the current school being worked on
+thisSchoolNum = findIndexOfSchoolName(schoolName, databaseSchoolNumbers)
 
 url = "https://maxpreps.com/high-schools/mckinley-trojans-(sebring,oh)/basketball/schedule.htm"
 page = requests.get(url)
@@ -40,13 +49,6 @@ assert(len(schoolsPlayed) == len(winLoss) == len(scores) == len(dates))
 # Create sql file
 output = open("output.sql", 'w')
 output.write("INSERT INTO game VALUES\n")
-
-thisSchoolNum = findIndexOfSchoolName(schoolName, databaseSchoolNumbers)
-
-"""
-TODO: Output date ("yyyy-mm-dd")
-TODO: Make functions and clean up code
-"""
 
 # For every game, output into sql file
 for iterNum, game in enumerate(schoolsPlayed):
