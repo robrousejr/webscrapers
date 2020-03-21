@@ -5,9 +5,11 @@ import os
 from functions import *
 
 schoolName = "Sebring"
-schoolLink = "mckinley-trojans-(sebring,oh)"
 
-url = "https://maxpreps.com/high-schools/" + schoolLink + "/basketball/schedule.htm"
+# Holds my custom database numbers and team values (outside of project)
+databaseSchoolNumbers = [["Jackson Milton", 1], ["Lowellville", 2], ["McDonald", 3], ["Mineral Ridge", 4], ["Sebring", 5], ["Springfield", 6], ["Waterloo", 7], ["Western Reserve", 8]]
+
+url = "https://maxpreps.com/high-schools/mckinley-trojans-(sebring,oh)/basketball/schedule.htm"
 page = requests.get(url)
 soup = BeautifulSoup(page.content, 'html.parser')
 
@@ -27,32 +29,13 @@ year = extractYear(yearRegex, (soup.select("#ctl00_NavigationWithContentOverRela
 
 # Lists containing game information
 schoolsPlayed = fillSchoolsPlayedList(schoolsPlayedSoup) # Contains names of schools played
+dates = fillDatesList(dateSoup, dateRegex, year) # Contains lists for each date, 0 index is for month, 1 index is for day
 winLoss = [] # W/L
 scores = [] # Contains lists for each game, 0 index is this team, 1 index is opponent
-dates = [] # Contains lists for each date, 0 index is for month, 1 index is for day
-
-# Fill winLoss, scores lists
-for x in scoresSoup:
-    match = winOrLossRegex.search(x.text).group().strip()
-    winOrLoss = match[1:2] # Gets 'W' or 'L'
-    match = scoreRegex.findall(x.text) # Holds list of this team's score and opponent's score
-    winLoss.append(winOrLoss)
-    scores.append(match)
-    print(winOrLoss + " " + match[0] + " - " + match[1])
-
-# Fill dates list
-for x in dateSoup:
-    match = dateRegex.findall(x.text) # Holds list of month, day
-    match[0] = makeTwoDigits(match[0]) # Month
-    match[1] = makeTwoDigits(match[1]) # Day
-    tmpYear = getYearOfGame(int(match[0]), int(year))
-    dates.append(tmpYear + "-" + match[0] + "-" + match[1]) # Format: yyyy-mm-dd
+fillWinLossAndScoresList(scoresSoup, winOrLossRegex, scoreRegex, winLoss, scores) # Fill winLoss[] and scores[] lists
 
 # Error checking
 assert(len(schoolsPlayed) == len(winLoss) == len(scores) == len(dates))
-
-# Holds my custom database numbers and team values (outside of project)
-databaseSchoolNumbers = [["Jackson Milton", 1], ["Lowellville", 2], ["McDonald", 3], ["Mineral Ridge", 4], ["Sebring", 5], ["Springfield", 6], ["Waterloo", 7], ["Western Reserve", 8]]
 
 # Create sql file
 output = open("output.sql", 'w')

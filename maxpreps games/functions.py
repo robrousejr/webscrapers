@@ -41,3 +41,24 @@ def fillSchoolsPlayedList(schoolsPlayedSoup):
         name = (x.text.split('(', 1)[0]).strip() # School name without whitespace
         tmpList.append(name)
     return tmpList
+
+# Fill dates list
+def fillDatesList(dateSoup, dateRegex, year):
+    dates = []
+    for x in dateSoup:
+        match = dateRegex.findall(x.text) # Holds list of month, day
+        match[0] = makeTwoDigits(match[0]) # Month
+        match[1] = makeTwoDigits(match[1]) # Day
+        tmpYear = getYearOfGame(int(match[0]), int(year))
+        dates.append(tmpYear + "-" + match[0] + "-" + match[1]) # Format: yyyy-mm-dd
+    return dates
+
+# Fills the winLoss[] list and the scores[] list
+def fillWinLossAndScoresList(scoresSoup, winOrLossRegex, scoreRegex, winLoss, scores):
+    for x in scoresSoup:
+        match = winOrLossRegex.search(x.text).group().strip()
+        winOrLoss = match[1:2] # Gets 'W' or 'L'
+        match = scoreRegex.findall(x.text) # Holds list of this team's score and opponent's score
+        winLoss.append(winOrLoss)
+        scores.append(match)
+        print(winOrLoss + " " + match[0] + " - " + match[1])
