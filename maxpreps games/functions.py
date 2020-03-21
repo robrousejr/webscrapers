@@ -1,3 +1,5 @@
+import re
+
 # Finds location of school name in a list containing school names and their database numbers
 # Returns -1 if school name is not found 
 def findIndexOfSchoolName(school, schoolsList):
@@ -11,7 +13,6 @@ def findIndexOfSchoolName(school, schoolsList):
             index = index + 1
     else:
         return -1
-
 
 # Make any 1 digit number a 2 digit number
 def makeTwoDigits(num):
@@ -28,3 +29,15 @@ def getYearOfGame(month, seasonYear):
         return str(seasonYear)
     else:
         return str(seasonYear + 1)
+
+# Extracts 4 digit year out of soup
+def extractYear(yearRegex, soup):
+    return re.search(yearRegex, soup).group().strip()
+
+# Fill schoolsPlayed list of school names
+def fillSchoolsPlayedList(schoolsPlayedSoup):
+    tmpList = []
+    for x in schoolsPlayedSoup:
+        name = (x.text.split('(', 1)[0]).strip() # School name without whitespace
+        tmpList.append(name)
+    return tmpList

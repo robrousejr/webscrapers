@@ -17,23 +17,19 @@ scoreRegex = re.compile(r'[0-9]{1,3}') # Gets between 1-3 digits
 yearRegex = re.compile(r'\d{4}') # Gets first 4 digit number (year)
 dateRegex = re.compile(r'[0-9]{1,2}') # Gets date numbers (0 = month, 1 = day)
 
+# Soup objects
 schoolsPlayedSoup = soup.select(".contest-type-indicator") # Contains of team names played
 scoresSoup = soup.select(".score") # Contains html of scores
 dateSoup = soup.select(".event-date") # Contains html of dates
 
-year = (soup.select("#ctl00_NavigationWithContentOverRelated_ContentOverRelated_PageHeaderUserControl_Team"))[0].text # In format "Varsity 2019-20"
-year = re.search(yearRegex, year).group().strip() # Year number without whitespace
+# 4 digit year of starting point in season (ex: 2019 for 2019-20 season)
+year = extractYear(yearRegex, (soup.select("#ctl00_NavigationWithContentOverRelated_ContentOverRelated_PageHeaderUserControl_Team"))[0].text)
 
 # Lists containing game information
-schoolsPlayed = [] # Contains names of schools played
+schoolsPlayed = fillSchoolsPlayedList(schoolsPlayedSoup) # Contains names of schools played
 winLoss = [] # W/L
 scores = [] # Contains lists for each game, 0 index is this team, 1 index is opponent
 dates = [] # Contains lists for each date, 0 index is for month, 1 index is for day
-
-# fill schoolsPlayed list
-for x in schoolsPlayedSoup:
-    name = (x.text.split('(', 1)[0]).strip() # School name without whitespace
-    schoolsPlayed.append(name)
 
 # Fill winLoss, scores lists
 for x in scoresSoup:
