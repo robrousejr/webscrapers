@@ -11,7 +11,12 @@ class product:
     def __str__(self):
         return "Name: %s\nPrice: $%d\nLink: %s\n" % (self.name, self.price, self.link)
 
-# Returns list of information about product on eBay
+"""
+Returns list of information about product on eBay (names, price, link)
+list[0] = name list
+list[1] = price list
+list[2] = link list
+"""
 def makeList(url):
     page = requests.get(url)
     soup = BeautifulSoup(page.content, 'html.parser')
@@ -42,12 +47,16 @@ def makeList(url):
     
     sizeLists = len(priceList) # Holds number of elements in all 3 lists
     productList = [] # Will hold all final objects
+
     # Goes through each list and makes Product objects for each
     for prod in range(sizeLists):
         tmpProduct = product(nameList[prod], priceList[prod], linkList[prod])
         productList.append(tmpProduct)
-    """ # Sorts product list by price ascending
-    productList.sort(key=lambda x: x.price, reverse=False) """
+    
+    """ 
+    To sort product list by price ascending:
+    productList.sort(key=lambda x: x.price, reverse=False) 
+    """
     return productList
 
 # Prints out the contents of a list

@@ -5,3 +5,7 @@ from script import *
 link = urlMaker()
 list = makeList(link)
 printList(list)
+
+# Print list of prices
+for product in list:
+    print(product.price)
