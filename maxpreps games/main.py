@@ -2,9 +2,12 @@ import requests
 from bs4 import BeautifulSoup
 import re
 import os
+from functions import *
 
-schoolName = "mckinley-trojans-(sebring,oh)"
-url = "https://maxpreps.com/high-schools/" + schoolName + "/basketball/schedule.htm"
+schoolName = "Sebring"
+schoolLink = "mckinley-trojans-(sebring,oh)"
+
+url = "https://maxpreps.com/high-schools/" + schoolLink + "/basketball/schedule.htm"
 page = requests.get(url)
 soup = BeautifulSoup(page.content, 'html.parser')
 
@@ -37,3 +40,28 @@ for x in scoresSoup:
 
 # Error checking
 assert(len(schoolsPlayed) == len(winLoss) == len(scores))
+
+# Holds my custom database numbers and team values (outside of project)
+databaseSchoolNumbers = [["Jackson Milton", 1], ["Lowellville", 2], ["McDonald", 3], ["Mineral Ridge", 4], ["Sebring", 5], ["Springfield", 6], ["Waterloo", 7], ["Western Reserve", 8]]
+
+# Create sql file
+output = open("output.sql", 'w')
+output.write("INSERT INTO game VALUES\n")
+
+thisSchoolNum = findIndexOfSchoolName(schoolName, databaseSchoolNumbers)
+
+"""
+TODO: Output date
+TODO: Make functions and clean up code
+"""
+
+# For every game, output into sql file
+for idx, game in enumerate(schoolsPlayed):
+    opponentSchoolNum = findIndexOfSchoolName(schoolsPlayed[idx], databaseSchoolNumbers)
+    opponentSchoolName = "NULL"
+    if(opponentSchoolNum == -1):
+        opponentSchoolNum = "NULL"
+        opponentSchoolName = "'" + schoolsPlayed[idx] + "'"
+
+    string = f"(NULL, {thisSchoolNum}, {opponentSchoolNum}, {scores[idx][0]}, {scores[idx][1]}, {opponentSchoolName}, NULL, 2019),\n"
+    output.write(string)
