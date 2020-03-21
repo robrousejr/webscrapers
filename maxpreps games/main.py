@@ -65,5 +65,5 @@ for iterNum, game in enumerate(schoolsPlayed):
         opponentSchoolNum = "NULL"
         opponentSchoolName = "'" + schoolsPlayed[iterNum] + "'"
 
-    string = f"(NULL, {thisSchoolNum}, {opponentSchoolNum}, {scores[iterNum][0]}, {scores[iterNum][1]}, {opponentSchoolName}, NULL, 2019),\n"
+    string = f"(NULL, {thisSchoolNum}, {opponentSchoolNum}, {scores[iterNum][0]}, {scores[iterNum][1]}, {opponentSchoolName}, NULL, {int(year)}),\n"
     output.write(string)
