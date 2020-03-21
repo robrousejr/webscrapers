@@ -11,3 +11,20 @@ def findIndexOfSchoolName(school, schoolsList):
             index = index + 1
     else:
         return -1
+
+
+# Make any 1 digit number a 2 digit number
+def makeTwoDigits(num):
+    numDigits = len(str(num))
+    if(numDigits == 1):
+        newNum = "0" + str(num)
+        return newNum
+    else:
+        return num
+
+# Returns correct year of certain game
+def getYearOfGame(month, seasonYear):
+    if(month > 6):
+        return str(seasonYear)
+    else:
+        return str(seasonYear + 1)
