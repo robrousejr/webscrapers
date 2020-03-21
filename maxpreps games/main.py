@@ -46,17 +46,5 @@ fillWinLossAndScoresList(scoresSoup, winOrLossRegex, scoreRegex, winLoss, scores
 # Error checking
 assert(len(schoolsPlayed) == len(winLoss) == len(scores) == len(dates))
 
-# Create sql file
-output = open("output.sql", 'w')
-output.write("INSERT INTO game VALUES\n")
-
-# For every game, output into sql file
-for iterNum, game in enumerate(schoolsPlayed):
-    opponentSchoolNum = findIndexOfSchoolName(schoolsPlayed[iterNum], databaseSchoolNumbers)
-    opponentSchoolName = "NULL"
-    if(opponentSchoolNum == -1):
-        opponentSchoolNum = "NULL"
-        opponentSchoolName = "'" + schoolsPlayed[iterNum] + "'"
-
-    string = f"(NULL, {thisSchoolNum}, {opponentSchoolNum}, {scores[iterNum][0]}, {scores[iterNum][1]}, {opponentSchoolName}, '{dates[iterNum]}', {int(year)}),\n"
-    output.write(string)
+# Outputs sql file ready for insertion
+outputSQL(schoolsPlayed, databaseSchoolNumbers, thisSchoolNum, scores, dates, year)

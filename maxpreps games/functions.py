@@ -62,3 +62,19 @@ def fillWinLossAndScoresList(scoresSoup, winOrLossRegex, scoreRegex, winLoss, sc
         winLoss.append(winOrLoss)
         scores.append(match)
         print(winOrLoss + " " + match[0] + " - " + match[1])
+
+# Outputs games into a SQL file
+def outputSQL(schoolsPlayed, databaseSchoolNumbers, thisSchoolNum, scores, dates, year):
+    # Create sql file
+    output = open("output.sql", 'w')
+    output.write("INSERT INTO game VALUES\n")
+
+    for iterNum, game in enumerate(schoolsPlayed):
+        opponentSchoolNum = findIndexOfSchoolName(schoolsPlayed[iterNum], databaseSchoolNumbers)
+        opponentSchoolName = "NULL"
+        if(opponentSchoolNum == -1):
+            opponentSchoolNum = "NULL"
+            opponentSchoolName = "'" + schoolsPlayed[iterNum] + "'"
+
+        string = f"(NULL, {thisSchoolNum}, {opponentSchoolNum}, {scores[iterNum][0]}, {scores[iterNum][1]}, {opponentSchoolName}, '{dates[iterNum]}', {int(year)}),\n"
+        output.write(string)
