@@ -6,7 +6,6 @@ from functions import *
 
 
 """
-TODO: If game score says 'report final score', save index and at end, pop off that value of each important list 
 TODO: Selenium to insert games into webiste rather than SQL file ||| OR scrape website and make SQL file for adjustments 
 """
 
