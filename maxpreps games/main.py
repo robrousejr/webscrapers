@@ -6,7 +6,7 @@ from functions import *
 
 
 """
-TODO: Selenium to insert games into webiste rather than SQL file ||| OR scrape website and make SQL file for adjustments 
+TODO: Make SQL file for adjustments to `season` table (NULL, teamID, year, wins, losses, wlratio)
 """
 
 
