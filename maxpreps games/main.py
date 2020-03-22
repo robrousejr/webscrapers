@@ -5,6 +5,14 @@ import os
 from functions import *
 
 
+"""
+TODO: If game score says 'report final score', save index and at end, pop off that value of each important list 
+TODO: Selenium to insert games into webiste rather than SQL file ||| OR scrape website and make SQL file for adjustments 
+"""
+
+
+
+
 # CUSTOM VARIABLES NEEDING UPDATED BELOW
 ########################################
 
@@ -18,7 +26,7 @@ databaseSchoolNumbers = [["Jackson Milton", 1], ["Lowellville", 2], ["McDonald",
 # Finds the index of the current school being worked on
 thisSchoolNum = findIndexOfSchoolName(schoolName, databaseSchoolNumbers)
 
-url = "https://maxpreps.com/high-schools/mckinley-trojans-(sebring,oh)/basketball/schedule.htm"
+url = "https://www.maxpreps.com/high-schools/mckinley-trojans-(sebring,oh)/basketball-winter-18-19/schedule.htm"
 page = requests.get(url)
 soup = BeautifulSoup(page.content, 'html.parser')
 
