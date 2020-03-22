@@ -54,14 +54,38 @@ def fillDatesList(dateSoup, dateRegex, year):
     return dates
 
 # Fills the winLoss[] list and the scores[] list
-def fillWinLossAndScoresList(scoresSoup, winOrLossRegex, scoreRegex, winLoss, scores):
-    for x in scoresSoup:
-        match = winOrLossRegex.search(x.text).group().strip()
-        winOrLoss = match[1:2] # Gets 'W' or 'L'
-        match = scoreRegex.findall(x.text) # Holds list of this team's score and opponent's score
-        winLoss.append(winOrLoss)
-        scores.append(match)
-        print(winOrLoss + " " + match[0] + " - " + match[1])
+def fillWinLossAndScoresList(scoresSoup, winOrLossRegex, scoreRegex, winLoss, scores, errList):
+    for iterNum, x in enumerate(scoresSoup):
+        match = winOrLossRegex.search(x.text)
+
+        # Match found
+        if(match != None):
+            match = match.group().split()
+            winOrLoss = match[0][1:2] # Gets 'W' or 'L'
+            match = scoreRegex.findall(x.text) # Holds list of this team's score and opponent's score
+            # print(winOrLoss + " " + match[0] + " - " + match[1])
+            winLoss.append(winOrLoss)
+            scores.append(match)
+        else:
+            # Keeps track of error indexes to be removed from other lists
+            errList.append(iterNum)
+
+# Deletes error indexes in schoolsPlayed, dates lists
+def deleteErrIndexes(errList, schoolsPlayed, dates):
+    for index in errList:
+        del schoolsPlayed[index]
+        del dates[index]
+        
+
+
+
+
+
+
+
+
+
+
 
 # Outputs games into a SQL file
 def outputSQL(schoolsPlayed, databaseSchoolNumbers, thisSchoolNum, scores, dates, year):

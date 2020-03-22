@@ -38,7 +38,7 @@ dateRegex = re.compile(r'[0-9]{1,2}') # Gets date numbers (0 = month, 1 = day)
 
 # Soup objects
 schoolsPlayedSoup = soup.select(".contest-type-indicator") # Contains of team names played
-scoresSoup = soup.select(".score") # Contains html of scores
+scoresSoup = soup.select("tbody .result.last") # Contains html of scores
 dateSoup = soup.select(".event-date") # Contains html of dates
 
 # 4 digit year of starting point in season (ex: 2019 for 2019-20 season)
@@ -49,7 +49,9 @@ schoolsPlayed = fillSchoolsPlayedList(schoolsPlayedSoup) # Contains names of sch
 dates = fillDatesList(dateSoup, dateRegex, year) # Contains lists for each date, 0 index is for month, 1 index is for day
 winLoss = [] # W/L
 scores = [] # Contains lists for each game, 0 index is this team, 1 index is opponent
-fillWinLossAndScoresList(scoresSoup, winOrLossRegex, scoreRegex, winLoss, scores) # Fill winLoss[] and scores[] lists
+errList = [] # List containing indexes to delete from schoolsPlayed, dates
+fillWinLossAndScoresList(scoresSoup, winOrLossRegex, scoreRegex, winLoss, scores, errList) # Fill winLoss[] and scores[] lists
+deleteErrIndexes(errList, schoolsPlayed, dates) # Deletes error indexes in schoolsPlayed, dates lists
 
 # Error checking
 assert(len(schoolsPlayed) == len(winLoss) == len(scores) == len(dates))
