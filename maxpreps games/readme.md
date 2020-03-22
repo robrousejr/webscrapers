@@ -5,7 +5,8 @@
 ## Project Details
 
 * This project was created for a specific database that was already premade
-* You can remove `databaseSchoolNumbers` contents (not the list itself) and change the `outputSQL` function if you just want to extract the game information without formatting it into a SQL file
+* You can remove `databaseSchoolNumbers` contents (not the list itself) [found here](https://github.com/robrousejr/webscrapers/blob/b48144bb90c7fecebd9af9618b9d6748caa64338/maxpreps%20games/main.py#L19) and change the `outputSQL` function [found here](https://github.com/robrousejr/webscrapers/blob/b48144bb90c7fecebd9af9618b9d6748caa64338/maxpreps%20games/functions.py#L91-L104) if you just want to extract the game information without formatting it into a SQL file
 
 #### User Variables Before Use
 
+[Update These](https://github.com/robrousejr/webscrapers/blob/master/maxpreps%20games/main.py#L15-L22)
