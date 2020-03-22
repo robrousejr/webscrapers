@@ -16,16 +16,16 @@ TODO: Selenium to insert games into webiste rather than SQL file ||| OR scrape w
 ########################################
 
 schoolName = "Sebring"
-databaseSchoolNumbers = [["Jackson Milton", 1], ["Lowellville", 2], ["McDonald", 3], ["Mineral Ridge", 4], ["Sebring", 5], ["Springfield", 6], ["Waterloo", 7], ["Western Reserve", 8]]
+databaseSchoolNumbers = [["Jackson-Milton", 1], ["Lowellville", 2], ["McDonald", 3], ["Mineral Ridge", 4], ["Sebring", 5], ["Springfield", 6], ["Waterloo", 7], ["Western Reserve", 8]]
+url = "https://www.maxpreps.com/high-schools/mckinley-trojans-(sebring,oh)/basketball-winter-18-19/schedule.htm"
 
 ########################################
 
 
 
-# Finds the index of the current school being worked on
+# Finds the index of the current school being worked on in databaseSchoolNumbers
 thisSchoolNum = findIndexOfSchoolName(schoolName, databaseSchoolNumbers)
 
-url = "https://www.maxpreps.com/high-schools/mckinley-trojans-(sebring,oh)/basketball-winter-18-19/schedule.htm"
 page = requests.get(url)
 soup = BeautifulSoup(page.content, 'html.parser')
 
