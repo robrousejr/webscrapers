@@ -75,17 +75,6 @@ def deleteErrIndexes(errList, schoolsPlayed, dates):
     for index in errList:
         del schoolsPlayed[index]
         del dates[index]
-        
-
-
-
-
-
-
-
-
-
-
 
 # Outputs games into a SQL file
 def outputSQL(schoolsPlayed, databaseSchoolNumbers, thisSchoolNum, scores, dates, year):
