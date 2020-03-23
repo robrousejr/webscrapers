@@ -6,7 +6,8 @@ from functions import *
 
 
 """
-TODO: Make SQL file for adjustments to `season` table (NULL, teamID, year, wins, losses, wlratio)
+TODO: Scrape mvacbasketball.com to get proper season SQL information
+TODO: Make SQL file for season insertion (NULL, Team_id, season year, wins, losses, wlratio)
 """
 
 
