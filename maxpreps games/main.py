@@ -4,14 +4,6 @@ import re
 import os
 from functions import *
 
-
-"""
-TODO: Make SQL file for adjustments to `season` table (NULL, teamID, year, wins, losses, wlratio)
-"""
-
-
-
-
 # CUSTOM VARIABLES NEEDING UPDATED BELOW
 ########################################
 

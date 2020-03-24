@@ -10,3 +10,8 @@
 #### User Variables Before Use
 
 [Update These](https://github.com/robrousejr/webscrapers/blob/master/maxpreps%20games/main.py#L15-L22)
+
+## How to Run
+
+* To scrape [Maxpreps](www.maxpreps.com), move into directory and run `py main.py` to get output
+* To scrape [MVACBasketball](https://mvacbasketball.com), move into directory and run `py mvac.py` to get output
