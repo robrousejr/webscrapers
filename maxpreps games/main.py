@@ -4,15 +4,6 @@ import re
 import os
 from functions import *
 
-
-"""
-TODO: Scrape mvacbasketball.com to get proper season SQL information
-TODO: Make SQL file for season insertion (NULL, Team_id, season year, wins, losses, wlratio)
-"""
-
-
-
-
 # CUSTOM VARIABLES NEEDING UPDATED BELOW
 ########################################
 
