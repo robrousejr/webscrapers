@@ -13,5 +13,5 @@
 
 ## How to Run
 
-* To scrape Maxpreps, move into directory and run `py main.py` to get your output
-* To scrape Mvacbasketball, move into directory and run `mvac.py` to get output
+* To scrape [Maxpreps](www.maxpreps.com), move into directory and run `py main.py` to get output
+* To scrape [MVACBasketball](https://mvacbasketball.com), move into directory and run `py mvac.py` to get output
