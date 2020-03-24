@@ -4,13 +4,6 @@ import re
 import os
 from functions import *
 
-"""
-TODO: Fix order of score output depending on W/L (bigger number is in scores[0] regardless)
-"""
-
-
-
-
 # CUSTOM VARIABLES NEEDING UPDATED BELOW
 ########################################
 
