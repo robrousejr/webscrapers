@@ -4,12 +4,19 @@ import re
 import os
 from functions import *
 
+"""
+TODO: Fix order of score output depending on W/L (bigger number is in scores[0] regardless)
+"""
+
+
+
+
 # CUSTOM VARIABLES NEEDING UPDATED BELOW
 ########################################
 
 schoolName = "Sebring"
 databaseSchoolNumbers = [["Jackson-Milton", 1], ["Lowellville", 2], ["McDonald", 3], ["Mineral Ridge", 4], ["Sebring", 5], ["Springfield", 6], ["Waterloo", 7], ["Western Reserve", 8]]
-url = "https://www.maxpreps.com/high-schools/mckinley-trojans-(sebring,oh)/basketball-winter-18-19/schedule.htm"
+url = "https://www.maxpreps.com/high-schools/mckinley-trojans-(sebring,oh)/basketball/schedule.htm"
 
 ########################################
 

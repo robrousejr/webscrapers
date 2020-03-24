@@ -63,6 +63,11 @@ def fillWinLossAndScoresList(scoresSoup, winOrLossRegex, scoreRegex, winLoss, sc
             match = match.group().split()
             winOrLoss = match[0][1:2] # Gets 'W' or 'L'
             match = scoreRegex.findall(x.text) # Holds list of this team's score and opponent's score
+            # If loss, swap order of scores match list
+            if(winOrLoss == "L"):
+                tmp = match[0]
+                match[0] = match[1]
+                match[1] = tmp
             # print(winOrLoss + " " + match[0] + " - " + match[1])
             winLoss.append(winOrLoss)
             scores.append(match)
