@@ -13,6 +13,8 @@ url = "https://www.maxpreps.com/high-schools/mckinley-trojans-(sebring,oh)/baske
 
 ########################################
 
+
+
 # Finds the index of the current school being worked on in databaseSchoolNumbers
 thisSchoolNum = findIndexOfSchoolName(schoolName, databaseSchoolNumbers)
 
